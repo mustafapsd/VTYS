@@ -1,0 +1,162 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Example API",
+    "description": "This is a simple API to demonstrate an OAS YAML structure.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://gateway.dev.tserio.com/api/api-manager-service/mock-server/wizard-test",
+      "description": "Mock server (uses mock data)"
+    },
+    {
+      "url": "https://gateway.dev.tserio.com/api/api-manager-service/wizard-test",
+      "description": "Development server (uses live data)"
+    }
+  ],
+  "paths": {
+    "/users": {
+      "post": {
+        "summary": "Create a new user",
+        "description": "Adds a new user to the system.",
+        "operationId": "usersPOST",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "User created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Retrieve a list of usersadsa",
+        "description": "Returns a list of all users in the system.",
+        "operationId": "usersAll",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "Default error sample response"
+          }
+        }
+      }
+    },
+    "/users/{userId}": {
+      "get": {
+        "summary": "Get a user by ID",
+        "description": "Retrieves a user by their unique ID.",
+        "operationId": "usersGET",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "description": "The unique ID of the user",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/petee": {
+      "summary": "Pette",
+      "description": "Somethinggg",
+      "get": {
+        "summary": "Getting petes",
+        "description": "",
+        "operationId": "petee",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "Default error sample response"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "email"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "12345"
+          },
+          "name": {
+            "type": "string",
+            "example": "John Doe"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "johndoe@example.com"
+          },
+          "age": {
+            "type": "integer",
+            "example": "30"
+          }
+        }
+      },
+      "undefined": {}
+    }
+  },
+  "externalDocs": {
+    "description": "Changingg",
+    "url": "https://petstore.swagger.io/v2/swagger.json"
+  }
+}
